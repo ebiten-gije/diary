@@ -1,0 +1,32 @@
+create table users (
+    m_id integer Not null,
+    name character varying(100) Not null,
+    password character varying(100) Not null,
+    primary key (m_id)
+);
+
+create table diary (
+    d_id integer Not null,
+    m_id integer Not null,
+    d_date date not null,
+    title character varying(100) not null,
+    content character varying not null,
+    
+    primary key (d_id)
+);
+create sequence users_id;
+
+create sequence diary_id;
+
+CREATE TABLE diary_analysis (
+    d_id INTEGER PRIMARY KEY,  -- diary テーブルの PK に対応する FK
+    summary TEXT,
+    emotion character varying,
+    weather_style character varying
+);
+
+ALTER TABLE diary_analysis
+ADD CONSTRAINT fk_diary_analysis_diary
+FOREIGN KEY (d_id)
+REFERENCES diary (d_id)
+ON DELETE CASCADE;

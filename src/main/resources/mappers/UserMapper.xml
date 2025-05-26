@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.diary.vo.UserVo">
+	
+	<insert id="insert" parameterType="map">
+		<selectKey keyProperty="uId" resultType="int" order="BEFORE">
+	      SELECT nextval('users_id')
+	    </selectKey>
+		insert into users (u_id, name, password) values (#{uId}, #{name}, #{password})
+	</insert>
+	
+
+</mapper>
